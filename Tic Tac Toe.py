@@ -19,7 +19,7 @@ def initBoard(ttt):
     # set up the background surface
     background = pygame.Surface(ttt.get_size())
     background = background.convert()
-    background.fill(( 128, 128, 128))
+    background.fill(( 220, 220, 220))
 
     # linjerne
     # lodret lines...
@@ -106,17 +106,17 @@ def drawMove(board, boardRow, boardCol, Piece):
     # Piece     : X or O
 
     # determine the center of the square
-    centerX = ((boardCol) * 220) + 100
-    centerY = ((boardRow) * 245) + 100
+    centerX = ((boardCol) * 215) + 108
+    centerY = ((boardRow) * 225) + 125
 
     # draw the appropriate piece
     if (Piece == 'O'):
-        pygame.draw.circle(board, (0, 0, 0), (centerX, centerY), 40, 2)
+        pygame.draw.circle(board, (0, 0, 255), (centerX, centerY), 80, 7)
     else:
-        pygame.draw.line(board, (0, 0, 0), (centerX - 22, centerY - 22), \
-                         (centerX + 22, centerY + 22), 3)
-        pygame.draw.line(board, (0, 0, 0), (centerX + 22, centerY - 22), \
-                         (centerX - 22, centerY + 22), 3)
+        pygame.draw.line(board, (0, 0, 255), (centerX - 66, centerY - 66), \
+                         (centerX + 66, centerY + 66), 10)
+        pygame.draw.line(board, (0, 0, 255), (centerX + 66, centerY - 66), \
+                         (centerX - 66, centerY + 66), 10)
 
     # mark the space as used
     grid[boardRow][boardCol] = Piece
@@ -161,7 +161,7 @@ def gameWon(board):
                 (grid[row][0] is not None)):
             # this row won
             winner = grid[row][0]
-            pygame.draw.line(board, (0, 0, 255), (0, (row + 1) * 100 - 50), \
+            pygame.draw.line(board, (255, 0, 0), (0, (row + 1) * 100 - 50), \
                              (645, (row + 1) * 100 - 50), 5)
             break
 
@@ -171,7 +171,7 @@ def gameWon(board):
                 (grid[0][col] is not None):
             # this column won
             winner = grid[0][col]
-            pygame.draw.line(board, (0, 0, 255), ((col + 1) * 100 - 50, 0), \
+            pygame.draw.line(board, (0, 0, 0), ((col + 1) * 100 - 50, 0), \
                              ((col + 1) * 100 - 50, 675), 5)
             break
 
@@ -186,13 +186,13 @@ def gameWon(board):
             (grid[0][2] is not None):
         # game won diagonally right to left
         winner = grid[0][2]
-        pygame.draw.line(board, (0, 0, 255), (250, 50), (50, 250), 5)
+        pygame.draw.line(board, (0, 0, 0), (250, 50), (50, 250), 5)
 
 
 # --------------------------------------------------------------------
 # initialize pygame and our window
 pygame.init()
-ttt = pygame.display.set_mode((645, 645))
+ttt = pygame.display.set_mode((645, 675))
 pygame.display.set_caption('Tic-Tac-Toe')
 
 # create the game board
